@@ -1,42 +1,14 @@
+'use client';
+
 import Link from 'next/link';
 import AnimationWrapper from './AnimationWrapper';
-
-const products = [
-  {
-    id: 1,
-    name: "Hệ Thống Âm Thanh Ô Tô Cao Cấp",
-    description: "Hệ thống âm thanh ô tô cao cấp với chất lượng âm thanh tinh khiết",
-    image: "/api/placeholder/300/200",
-    category: "Âm Thanh Ô Tô",
-    features: ["Loa Cao Cấp", "Bộ Khuếch Đại Tiên Tiến", "Lắp Đặt Chuyên Nghiệp"]
-  },
-  {
-    id: 2,
-    name: "Giải Pháp Rạp Hát Tại Nhà",
-    description: "Hệ thống rạp hát tại nhà hoàn chỉnh cho trải nghiệm giải trí tuyệt vời",
-    image: "/api/placeholder/300/200",
-    category: "Âm Thanh Gia Đình",
-    features: ["Âm Thanh Vòm", "Tương Thích 4K", "Tích Hợp Thông Minh"]
-  },
-  {
-    id: 3,
-    name: "Thiết Bị Âm Thanh Chuyên Nghiệp",
-    description: "Giải pháp âm thanh cấp thương mại cho doanh nghiệp và địa điểm",
-    image: "/api/placeholder/300/200",
-    category: "Chuyên Nghiệp",
-    features: ["Cấp Thương Mại", "Hệ Thống Mở Rộng", "Hỗ Trợ 24/7"]
-  },
-  {
-    id: 4,
-    name: "Hệ Thống Âm Thanh Hàng Hải",
-    description: "Hệ thống âm thanh chống thời tiết được thiết kế cho môi trường hàng hải",
-    image: "/api/placeholder/300/200",
-    category: "Hàng Hải",
-    features: ["Thiết Kế Chống Nước", "Chống Ăn Mòn", "Chứng Nhận Hàng Hải"]
-  }
-];
+import { useProducts } from '@/contexts/ProductContext';
 
 export default function FeaturedProducts() {
+  const { products } = useProducts();
+  
+  // Get featured products (first 4 products from different categories)
+  const featuredProducts = products.slice(0, 4);
   return (
     <section className="py-16 bg-gray-800 relative overflow-hidden">
       {/* Background decoration */}
@@ -57,7 +29,7 @@ export default function FeaturedProducts() {
         </AnimationWrapper>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product, index) => (
+          {featuredProducts.map((product, index) => (
             <AnimationWrapper 
               key={product.id} 
               animation="animate-slide-in-up" 
@@ -74,16 +46,28 @@ export default function FeaturedProducts() {
                 </div>
                 <div className="p-6">
                   <div className="text-sm text-blue-400 font-semibold mb-2 group-hover:text-blue-300 transition-colors">
-                    {product.category}
+                    {product.category} • {product.brand}
                   </div>
                   <h3 className="text-xl font-bold text-gray-100 mb-2 group-hover:text-white transition-colors">
                     {product.name}
                   </h3>
-                  <p className="text-gray-300 mb-4 group-hover:text-gray-200 transition-colors">
+                  <p className="text-gray-300 mb-4 group-hover:text-gray-200 transition-colors line-clamp-2">
                     {product.description}
                   </p>
+                  
+                  {/* Price */}
+                  <div className="mb-4">
+                    <div className="text-lg font-bold text-green-400">
+                      {product.wholesalePrice.toLocaleString('vi-VN')}₫
+                    </div>
+                    <div className="text-sm text-gray-400 line-through">
+                      {product.price.toLocaleString('vi-VN')}₫
+                    </div>
+                  </div>
+
+                  {/* Features */}
                   <ul className="space-y-1 mb-4">
-                    {product.features.map((feature, featureIndex) => (
+                    {product.features.slice(0, 3).map((feature, featureIndex) => (
                       <li 
                         key={`${product.id}-feature-${featureIndex}`} 
                         className="text-sm text-gray-400 flex items-center group-hover:text-gray-300 transition-colors"
@@ -94,11 +78,25 @@ export default function FeaturedProducts() {
                       </li>
                     ))}
                   </ul>
+
+                  {/* Stock status */}
+                  <div className="mb-4">
+                    <span className={`px-2 py-1 rounded-full text-xs border ${
+                      product.inStock > 10 
+                        ? 'bg-green-900/50 border-green-700 text-green-300' 
+                        : product.inStock > 0
+                        ? 'bg-yellow-900/50 border-yellow-700 text-yellow-300'
+                        : 'bg-red-900/50 border-red-700 text-red-300'
+                    }`}>
+                      {product.inStock > 0 ? `Còn ${product.inStock} sản phẩm` : 'Hết hàng'}
+                    </span>
+                  </div>
+
                   <Link 
-                    href={`/products?category=${product.category.toLowerCase()}`}
+                    href={`/products/${product.id}`}
                     className="inline-block bg-blue-600/80 border border-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
                   >
-                    Xem Sản Phẩm
+                    Xem Chi Tiết
                   </Link>
                 </div>
               </div>

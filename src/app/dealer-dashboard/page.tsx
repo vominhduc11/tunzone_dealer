@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -107,22 +108,22 @@ export default function DealerDashboard() {
             <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg shadow-xl p-6">
               <h2 className="text-xl font-bold text-gray-100 mb-4">Quick Actions</h2>
               <div className="grid grid-cols-2 gap-4">
-                <button className="p-4 bg-blue-900/30 border border-blue-700 rounded-lg hover:bg-blue-900/50 transition-colors text-center">
+                <Link href="/orders" className="p-4 bg-blue-900/30 border border-blue-700 rounded-lg hover:bg-blue-900/50 transition-colors text-center block">
                   <div className="text-2xl mb-2">📦</div>
-                  <div className="font-medium text-gray-100">New Order</div>
-                </button>
-                <button className="p-4 bg-green-900/30 border border-green-700 rounded-lg hover:bg-green-900/50 transition-colors text-center">
-                  <div className="text-2xl mb-2">📊</div>
-                  <div className="font-medium text-gray-100">View Reports</div>
-                </button>
-                <button className="p-4 bg-purple-900/30 border border-purple-700 rounded-lg hover:bg-purple-900/50 transition-colors text-center">
+                  <div className="font-medium text-gray-100">Đơn Hàng</div>
+                </Link>
+                <Link href="/sales" className="p-4 bg-green-900/30 border border-green-700 rounded-lg hover:bg-green-900/50 transition-colors text-center block">
+                  <div className="text-2xl mb-2">💰</div>
+                  <div className="font-medium text-gray-100">Bán Hàng</div>
+                </Link>
+                <Link href="/products" className="p-4 bg-purple-900/30 border border-purple-700 rounded-lg hover:bg-purple-900/50 transition-colors text-center block">
                   <div className="text-2xl mb-2">🛍️</div>
-                  <div className="font-medium text-gray-100">Browse Catalog</div>
-                </button>
-                <button className="p-4 bg-orange-900/30 border border-orange-700 rounded-lg hover:bg-orange-900/50 transition-colors text-center">
-                  <div className="text-2xl mb-2">👥</div>
-                  <div className="font-medium text-gray-100">Customers</div>
-                </button>
+                  <div className="font-medium text-gray-100">Sản Phẩm</div>
+                </Link>
+                <Link href="/inventory" className="p-4 bg-orange-900/30 border border-orange-700 rounded-lg hover:bg-orange-900/50 transition-colors text-center block">
+                  <div className="text-2xl mb-2">📊</div>
+                  <div className="font-medium text-gray-100">Kho Hàng</div>
+                </Link>
               </div>
             </div>
           </div>

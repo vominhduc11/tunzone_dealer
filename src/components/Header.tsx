@@ -33,9 +33,14 @@ export default function Header() {
               Sản Phẩm
             </Link>
             {!user?.isGuest && (
-              <Link href="/orders" className="text-gray-200 hover:text-blue-400 transition-colors">
-                Đơn Hàng
-              </Link>
+              <>
+                <Link href="/orders" className="text-gray-200 hover:text-blue-400 transition-colors">
+                  Đơn Hàng
+                </Link>
+                <Link href="/sales" className="text-gray-200 hover:text-blue-400 transition-colors">
+                  Bán Hàng
+                </Link>
+              </>
             )}
             <Link href="/support" className="text-gray-200 hover:text-blue-400 transition-colors">
               Hỗ Trợ
@@ -169,9 +174,14 @@ export default function Header() {
                 Sản Phẩm
               </Link>
               {!user?.isGuest && (
-                <Link href="/orders" className="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700/50 rounded transition-colors duration-200">
-                  Đơn Hàng
-                </Link>
+                <>
+                  <Link href="/orders" className="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700/50 rounded transition-colors duration-200">
+                    Đơn Hàng
+                  </Link>
+                  <Link href="/sales" className="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-700/50 rounded transition-colors duration-200">
+                    Bán Hàng
+                  </Link>
+                </>
               )}
               <Link href="/support" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                 Hỗ Trợ

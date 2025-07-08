@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import AnimationWrapper from './AnimationWrapper';
 
 const benefits = [
@@ -91,18 +92,18 @@ export default function Benefits() {
                 Duyệt qua danh mục rộng lớn các sản phẩm âm thanh cao cấp với giá bán sỉ.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
+                <Link 
                   href="/products" 
                   className="bg-white/90 backdrop-blur-sm text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-all duration-300 hover-lift transform hover:scale-105 border border-white/20"
                 >
                   Xem Sản Phẩm
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/contact" 
                   className="border-2 border-white/80 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 hover-lift transform hover:scale-105"
                 >
                   Liên Hệ Hỗ Trợ
-                </a>
+                </Link>
               </div>
             </div>
           </div>

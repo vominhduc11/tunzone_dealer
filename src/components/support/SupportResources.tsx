@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 interface Resource {
   id: string;
@@ -366,7 +367,7 @@ export default function SupportResources() {
             </div>
           </a>
           
-          <a
+          <Link
             href="/products"
             className="flex items-center p-3 bg-gray-700/50 rounded-lg hover:bg-gray-600/50 transition-all duration-300 transform hover:scale-105"
           >
@@ -375,7 +376,7 @@ export default function SupportResources() {
               <div className="font-medium text-gray-100">Sản Phẩm</div>
               <div className="text-sm text-gray-400">Danh mục đầy đủ</div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
