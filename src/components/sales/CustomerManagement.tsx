@@ -83,8 +83,7 @@ export default function CustomerManagement() {
     notes: ''
   });
 
-  const statuses = ['all', 'active', 'inactive', 'vip'];
-  const types = ['all', 'individual', 'business'];
+
 
   const getStatusColor = (status: string) => {
     switch (status) {

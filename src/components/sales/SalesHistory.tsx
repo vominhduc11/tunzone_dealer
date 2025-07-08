@@ -98,8 +98,6 @@ export default function SalesHistory() {
   const [selectedRecord, setSelectedRecord] = useState<SalesRecord | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
 
-  const statuses = ['all', 'completed', 'processing', 'cancelled'];
-  const paymentStatuses = ['all', 'paid', 'partial', 'pending'];
   const dateRanges = [
     { value: '7days', label: '7 Ngày Qua' },
     { value: '30days', label: '30 Ngày Qua' },

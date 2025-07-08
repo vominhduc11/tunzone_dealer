@@ -477,7 +477,7 @@ export default function SalesForm() {
                 <label className="block text-sm font-medium text-gray-200 mb-2">Phương Thức Thanh Toán</label>
                 <select
                   value={saleData.paymentMethod}
-                  onChange={(e) => setSaleData(prev => ({ ...prev, paymentMethod: e.target.value as any }))}
+                  onChange={(e) => setSaleData(prev => ({ ...prev, paymentMethod: e.target.value as 'cash' | 'card' | 'transfer' | 'installment' }))}
                   className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 text-gray-100 transition-all duration-300"
                 >
                   <option value="cash">Tiền Mặt</option>
@@ -491,7 +491,7 @@ export default function SalesForm() {
                 <label className="block text-sm font-medium text-gray-200 mb-2">Trạng Thái Thanh Toán</label>
                 <select
                   value={saleData.paymentStatus}
-                  onChange={(e) => setSaleData(prev => ({ ...prev, paymentStatus: e.target.value as any }))}
+                  onChange={(e) => setSaleData(prev => ({ ...prev, paymentStatus: e.target.value as 'paid' | 'partial' | 'pending' }))}
                   className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 text-gray-100 transition-all duration-300"
                 >
                   <option value="paid">Đã Thanh Toán</option>

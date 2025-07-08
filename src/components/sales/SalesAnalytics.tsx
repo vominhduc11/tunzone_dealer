@@ -215,7 +215,7 @@ export default function SalesAnalytics() {
           </h3>
           
           <div className="space-y-4">
-            {monthlyData.map((data, index) => (
+            {monthlyData.map((data) => (
               <div key={data.month} className="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg">
                 <div>
                   <div className="font-medium text-gray-100">{data.month}</div>
@@ -310,7 +310,7 @@ export default function SalesAnalytics() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-700">
-              {monthlyData.map((data, index) => (
+              {monthlyData.map((data) => (
                 <tr key={data.month} className="hover:bg-gray-700/30 transition-colors">
                   <td className="px-6 py-4 font-medium text-gray-100">{data.month}</td>
                   <td className="px-6 py-4 text-green-400 font-semibold">₫{data.sales.toLocaleString()}</td>
