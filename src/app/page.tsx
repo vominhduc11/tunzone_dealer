@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Benefits from "@/components/Benefits";
 import Footer from "@/components/Footer";
+import NotificationDemo from "@/components/notifications/NotificationDemo";
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
         </div>
         <div className="animate-fade-in animation-delay-400">
           <Benefits />
+        </div>
+        <div className="animate-fade-in animation-delay-600 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <NotificationDemo />
         </div>
       </div>
       

@@ -9,12 +9,14 @@ import Footer from '@/components/Footer';
 import { useProducts, Product } from '@/contexts/ProductContext';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/useToast';
 
 export default function ProductDetail() {
   const params = useParams();
   const { user } = useAuth();
   const { products } = useProducts();
   const { addToCart, isInCart, getCartItem } = useCart();
+  const toast = useToast();
   
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -37,7 +39,7 @@ export default function ProductDetail() {
     if (!product) return;
     
     if (user?.isGuest) {
-      alert('Vui lòng đăng nhập với tài khoản đại lý để thêm sản phẩm vào giỏ hàng');
+      toast.warning('Yêu cầu đăng nhập', 'Vui lòng đăng nhập với tài khoản đại lý để thêm sản phẩm vào giỏ hàng');
       return;
     }
 
@@ -51,8 +53,10 @@ export default function ProductDetail() {
       sku: product.sku,
       minOrderQty: product.minOrderQty,
       maxOrderQty: product.maxOrderQty,
-      inStock: product.inStock
+      inStock: product.inStock,
     }, quantity);
+
+    toast.success('Đã thêm vào giỏ hàng!', `${product.name} (${quantity} sản phẩm) đã được thêm vào giỏ hàng`);
   };
 
   const generateQuantityOptions = () => {

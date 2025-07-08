@@ -6,8 +6,10 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { ProductProvider } from "@/contexts/ProductContext";
 import { OrderProvider } from "@/contexts/OrderContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 import AuthGuard from "@/components/AuthGuard";
 import ThemeScript from "@/components/ThemeScript";
+import Toast from "@/components/notifications/Toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,9 +45,12 @@ export default function RootLayout({
             <ProductProvider>
               <CartProvider>
                 <OrderProvider>
-                  <AuthGuard>
-                    {children}
-                  </AuthGuard>
+                  <NotificationProvider>
+                    <AuthGuard>
+                      {children}
+                    </AuthGuard>
+                    <Toast />
+                  </NotificationProvider>
                 </OrderProvider>
               </CartProvider>
             </ProductProvider>

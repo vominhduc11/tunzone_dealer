@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useToast } from '@/hooks/useToast';
 
 interface SaleItem {
   productId: string;
@@ -42,6 +43,8 @@ const sampleProducts = [
 ];
 
 export default function SalesForm() {
+  const toast = useToast();
+  
   const [saleData, setSaleData] = useState<SaleData>({
     customer: {
       name: '',
@@ -163,18 +166,49 @@ export default function SalesForm() {
     e.preventDefault();
     
     if (!saleData.customer.name || !saleData.customer.phone || saleData.items.length === 0) {
-      alert('Vui lòng điền đầy đủ thông tin khách hàng và thêm ít nhất một sản phẩm');
+      toast.error('Thông tin không đầy đủ', 'Vui lòng điền đầy đủ thông tin khách hàng và thêm ít nhất một sản phẩm');
       return;
     }
 
     setIsSubmitting(true);
+    toast.info('Đang xử lý', 'Đang tạo đơn hàng...');
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log('Sale data submitted:', saleData);
-    setSubmitSuccess(true);
-    setIsSubmitting(false);
+      console.log('Sale data submitted:', saleData);
+      setSubmitSuccess(true);
+      setIsSubmitting(false);
+      
+      toast.success('Thành công!', 'Đơn hàng đã được tạo thành công');
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setSaleData({
+          customer: {
+            name: '',
+            email: '',
+            phone: '',
+            address: '',
+            customerType: 'individual',
+            businessName: '',
+            taxCode: ''
+          },
+          items: [],
+          paymentMethod: 'cash',
+          paymentStatus: 'paid',
+          notes: '',
+          saleDate: new Date().toISOString().split('T')[0],
+          deliveryDate: '',
+          warrantyPeriod: 12
+        });
+        setSubmitSuccess(false);
+      }, 3000);
+    } catch {
+      toast.error('Lỗi', 'Không thể tạo đơn hàng. Vui lòng thử lại.');
+      setIsSubmitting(false);
+    }
 
     // Reset form after success
     setTimeout(() => {

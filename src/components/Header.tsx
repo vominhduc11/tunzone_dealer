@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
 import CartDropdown from './CartDropdown';
+import NotificationCenter from './notifications/NotificationCenter';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,6 +53,9 @@ export default function Header() {
 
           {/* Right side controls */}
           <div className="flex items-center space-x-4">
+            {/* Notifications */}
+            <NotificationCenter />
+
             {/* Shopping Cart */}
             {!user?.isGuest && (
               <div className="relative">
