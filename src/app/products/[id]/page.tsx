@@ -308,7 +308,7 @@ export default function ProductDetail() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Model:</span>
-                      <span className="text-white">{product.model || 'N/A'}</span>
+                      <span className="text-white">{product.specifications.Model || product.sku || 'N/A'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Trọng lượng:</span>
